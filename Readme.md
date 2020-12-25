@@ -22,10 +22,10 @@ pip install -r ./requirements.txt
 1. 运行Path_plan.py脚本
 2. 标准输出如下所示
 ```shell
+Time consumes:2.798s
 Best Path Plan.png is saved in ../model_$System time$
 Best Path Plan.json is saved in ../model_$System time$
 We use 57 steps with distacne:24.86779340321863
-Time consumes:3.331s
 ```
 3. Path_plan.py脚本的同级目录下会出现文件夹model_\$System time\$，其中包含Best Path Plan.png与Best Path Plan.json
 4. Best Path Plan.png为最佳路径示意图
