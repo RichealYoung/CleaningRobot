@@ -8,6 +8,7 @@ from os.path import dirname as opd
 import os
 import time
 def optimize_path(n_steps_for_rubbish,n_steps_for_obstacle,output_dir):
+    tic=time.time()
     # 1. Assigning task for every steps
     #init point
     x0=hW
@@ -115,6 +116,8 @@ def optimize_path(n_steps_for_rubbish,n_steps_for_obstacle,output_dir):
             break
         #adjust one wrong turn angle one time
         helper.adjust_turn_angle(x_list,y_list,wrong_angle_list[0],d)
+    toc=time.time()
+    print('Time consumes:{:.3f}s'.format(toc-tic))
     # 4.Final results
     path_distance=helper.cal_path_distance(x_list,y_list)
     theta_list=helper.generate_turn_angle(x_list,y_list)
@@ -146,7 +149,5 @@ if __name__=='__main__':
     angle_max=0.2*np.pi
     n_steps_for_rubbish=1
     n_steps_for_obstacle=8
-    tic=time.time()
     optimize_path(n_steps_for_rubbish,n_steps_for_obstacle,output_dir)
-    toc=time.time()
-    print('Time consumes:{:.3f}s'.format(toc-tic))
+
