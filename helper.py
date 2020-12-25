@@ -1,3 +1,4 @@
+from tkinter import Label
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
@@ -127,7 +128,7 @@ def plot(x,y,plotpath=True,plotrobot=False,theta=None,title=' ',wrong_angle_list
     ax.add_collection(p)
     # plot robot path
     if plotpath:
-        l1,=ax.plot(x,y,'-r')
+        l1,=plt.plot(x,y,'--r',linewidth=0.5)
     # plot robot area
     if plotrobot:
         if theta==None:
@@ -136,14 +137,22 @@ def plot(x,y,plotpath=True,plotrobot=False,theta=None,title=' ',wrong_angle_list
         all_robot_corners_loc=centers2corners(x,y,theta)
         for robot_corners_loc in all_robot_corners_loc:
             polygon = Polygon(robot_corners_loc,True,edgecolor='k',linewidth=0.15,facecolor='red')
-            ax.add_patch(polygon)
+            l3=ax.add_patch(polygon)
     # plot wrong_angle_list
     if len(wrong_angle_list):
         for wrong_angle in wrong_angle_list:
             l2,=plt.plot(x[wrong_angle+1],y[wrong_angle+1],'xk')
-        plt.legend(handles=[l1,l2],labels=['Best Path','Unsatisfied turn angle'])
+        if plotrobot:
+            plt.legend(handles=[l1,l2,l3],
+                    labels=['Best Path','Unsatisfied turn angle','Robot'])
+        else:
+            plt.legend(handles=[l1,l2],labels=['Best Path','Unsatisfied turn angle'])
     else:
-        plt.legend(handles=[l1],labels=['Best Path'])
+        if plotrobot:
+            plt.legend(handles=[l1,l3],
+                    labels=['Best Path','Robot'])
+        else:
+            plt.legend(handles=[l1],labels=['Best Path'])
     plt.title(title)
     # xylim
     if xmin and xmax and ymin and ymax:
@@ -151,7 +160,7 @@ def plot(x,y,plotpath=True,plotrobot=False,theta=None,title=' ',wrong_angle_list
         plt.ylim(ymin,ymax)
     # save figure
     if output_dir!=None:
-        plt.savefig(opj(output_dir,title+'.png'),dpi=300)
+        plt.savefig(opj(output_dir,title+'.png'),dpi=500)
         print('Best Path Plan.png is saved in {}'.format(output_dir))
     plt.close()
 ###############
