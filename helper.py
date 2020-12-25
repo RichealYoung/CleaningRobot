@@ -135,11 +135,8 @@ def plot(x,y,plotpath=True,plotrobot=False,theta=None,title=' ',wrong_angle_list
         patches=[]
         all_robot_corners_loc=centers2corners(x,y,theta)
         for robot_corners_loc in all_robot_corners_loc:
-            polygon = Polygon(robot_corners_loc,False)
-            patches.append(polygon)
-        p = PatchCollection(patches, alpha=1)
-        p.set_color([0.9,0,0])
-        ax.add_collection(p)
+            polygon = Polygon(robot_corners_loc,True,edgecolor='k',linewidth=0.15,facecolor='red')
+            ax.add_patch(polygon)
     # plot wrong_angle_list
     if len(wrong_angle_list):
         for wrong_angle in wrong_angle_list:
