@@ -9,6 +9,7 @@ gekko==0.2.8
 │ ─Path_plan.py                     #主函数
 │ ─Readme.md                        #说明文档
 │ ─requirements.txt                 #环境依赖
+│ ─Final_project.pdf                #报告文件
 │
 └─model_$System time$               #输出目录
       ─Best Path Plan.png           #最佳路径示意图
